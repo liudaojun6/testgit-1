@@ -5,8 +5,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -67,11 +66,11 @@ public class FileUpload extends HttpServlet {
 	        } 
 	        try {
 	          String ofn = fi.getName();
-	          String updir = "C:\\Users\\周\\Desktop\\test(3)\\test\\WebContent\\upload1";//这里我写死了request.getServletContext().getRealPath("/upload1");
+	          String updir = "C:\\Users\\周\\Desktop\\页面美化\\test\\WebContent\\upload1\\";//这里我写死了request.getServletContext().getRealPath("/upload1");
 	          String ext = ofn.substring(ofn.lastIndexOf("."));
 	          String fnf = UUID.randomUUID().toString();
 	          fn = String.valueOf(fnf) + ext;
-	          String df = "C:\\Users\\周\\Desktop\\test(3)\\test\\WebContent\\upload1\\" + fn;//updir+"\\"+fn;
+	          String df = updir + fn;//updir+"\\"+fn;
 	          System.out.println(updir);
 	          System.out.println("df:" + df);
 	          fi.write(new File(df));

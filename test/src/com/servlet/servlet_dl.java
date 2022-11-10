@@ -5,8 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -28,7 +27,6 @@ import com.vo.Wares;
  * Servlet implementation class servlet_dl
  */
 @WebServlet("/servlet_dl")
-@ServletSecurity(@HttpConstraint(rolesAllowed = "admin"))
 public class servlet_dl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -54,10 +52,8 @@ public class servlet_dl extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String id = request.getUserPrincipal().getName();
-	    String pwd = request.getUserPrincipal().get
-		//String id="abcd";
-		String pwd="abcd";
+		String id = request.getParameter("uname");
+	    String pwd = request.getParameter("pwd");
 	    Seller temple = new Seller();
 	    temple.setSellerid(id);
 	    temple.setSellerpw(pwd);
@@ -74,6 +70,7 @@ public class servlet_dl extends HttpServlet {
 	    String dl_result = null;
 	    Iscontent iscontent = new Iscontent();
 	    dl_result = iscontent.sjdl(it, temple);
+	    session.setAttribute("user", id);
 	    session.setAttribute("dl_result", dl_result);
 	    if (dl_result.equals("登录成功")) {
 	      Shop shop = new Shop();

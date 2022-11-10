@@ -23,8 +23,19 @@ public class WaresImpl implements WaresDao {
 	    return conn;
 	  }
   
-  public void insertwares(Wares w) throws SQLException {
+  public String insertwares(Wares w) throws SQLException {
+	  String result="发布成功";
     Connection conn = getConnection();
+    String sql2 = "select * from wares where waresstate=?";
+    PreparedStatement ps2 = conn.prepareStatement(sql2);
+    ps2.setString(1,"putaway");
+    ResultSet rs = ps2.executeQuery();
+    Wares wares = new Wares();
+    while (rs.next()) {
+      result="上传失败";
+      return result;
+    } 
+    
     String sql = "insert into wares(waresid,waresname,waresprice,waresnumber,shopid,waresstate,warespicture,waresclass,matketing) values(?,?,?,?,?,?,?,?,?)";
     PreparedStatement ps = conn.prepareStatement(sql);
     ps.setInt(1, 0);
@@ -39,6 +50,7 @@ public class WaresImpl implements WaresDao {
     ps.execute();
     ps.close();
     conn.close();
+    return result;
   }
   
   public List<Wares> selectwares() throws SQLException {

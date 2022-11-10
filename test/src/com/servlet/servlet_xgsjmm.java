@@ -2,8 +2,7 @@ package com.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -65,9 +64,9 @@ public class servlet_xgsjmm extends HttpServlet {
 	      } catch (SQLException e) {
 	        e.printStackTrace();
 	      } 
-	      request.getRequestDispatcher("admin/admin_change.jsp").forward((ServletRequest)request, (ServletResponse)response);
+	      request.getRequestDispatcher("admin_change.jsp").forward((ServletRequest)request, (ServletResponse)response);
 	    } else {
-	      request.getRequestDispatcher("admin/admin_change.jsp").forward((ServletRequest)request, (ServletResponse)response);
+	      request.getRequestDispatcher("admin_change.jsp").forward((ServletRequest)request, (ServletResponse)response);
 	    } 
 	  }
 

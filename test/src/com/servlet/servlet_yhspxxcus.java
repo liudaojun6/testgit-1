@@ -3,8 +3,7 @@ package com.servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;

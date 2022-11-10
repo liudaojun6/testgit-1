@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -72,7 +71,7 @@ public class servlet_scjlcus extends HttpServlet {
 			    or.setOrdertime(str);
 			    or.setBuyeraddress(buyeraddress);
 			    or.setBuyerphone(buyerphone);
-			    or.setOrderstate("未选择");
+			    or.setOrderstate("选择");
 			    
 			    System.out.println(or);
 			    System.out.print(or);
@@ -92,7 +91,7 @@ public class servlet_scjlcus extends HttpServlet {
 			    	} 
 			    	request.getRequestDispatcher("servlet_yhspxxcus").forward((ServletRequest)request, (ServletResponse)response);
 			    }else{
-			    	request.getRequestDispatcher("admin/admin_buyit.jsp?"+"wid="+waresid+"&shopid="+shopid).forward((ServletRequest)request, (ServletResponse)response);
+			    	request.getRequestDispatcher("cus_buyit.jsp?"+"wid="+waresid+"&shopid="+shopid).forward((ServletRequest)request, (ServletResponse)response);
 			    }
 	}
 

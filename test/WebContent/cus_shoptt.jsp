@@ -8,7 +8,7 @@
 <title>商城</title>
 <link rel="stylesheet" href="page.css">
 </head>
-<body>
+<body class="allbody">
 <%
 Wares w=(Wares)session.getAttribute("ware");
 int id=w.getWaresid();
@@ -22,31 +22,33 @@ int id=w.getWaresid();
         </div>
         <div class="spxq1_2">
             <div class="spxq1_1_1">
-            <%= w.getWaresname()%>
+            商品名：<%= w.getWaresname()%>
             </div>
             <div class="spxq1_1_1">
-             <%=w.getWaresprice()%>
+             商品价格：<%=w.getWaresprice()%>￥
             </div>
+            <br/>
+            <br/>
+            <br/>
             <form action="cus_buyit.jsp">
             	<input type="hidden" name="wid" value="<%=w.getWaresid() %>">
             	<input type="hidden" name="shopid" value="<%=w.getShopid() %>">
+            	<%if(w.getWaresstate().equals("putaway")){ %>
                 <input class="spxqgm" type="submit" name="submit" value="购买并填写个人信息">
+                <%}else{ %>
+                <%="商品已冻结" %>
+                <%} %>
             </form>
             <div class="spxq1_1_1">
-                xxx店铺
             </div>
         </div>
     </div>
     <div class="spxq2">
         <a class="us_a" href="">商品详情</a>
         <hr/>
+        <%= w.getMatkering()%>
         <div class="spxq2_1">
-        </div>
-        <a class="us_a" href="">商品评价</a>
-        <hr/>
-        <div class="spxq2_2">
-
-        </div>
     </div>
+
 </body>
 </html>

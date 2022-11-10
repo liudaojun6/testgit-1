@@ -1,5 +1,5 @@
 .us_a {
-    color: #ff0000;
+    color: #000000;
     text-decoration: none;
     margin: 0px 10px 0px 10px;
 }
@@ -49,7 +49,14 @@
 }
 .denglubody{
 	height:100%;
-	background-image: url(img/4.webp);
+	background-image: url(img/19.webp);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100% 100%;
+}
+.allbody{
+	height:100%;
+	background-image: url(img/31.webp);
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: 100% 100%;
@@ -144,12 +151,12 @@
     margin: 0;
     padding: 0;
     border-style: hidden;
-    background-color: white;
+    background-color: #ffffff;
     cursor: pointer;
 }
 
 .spzhuye1:hover {
-    background-color: rgb(230, 230, 230);
+    background-color: #c0c0c0;
 }
 
 .spzhuye1_1 {

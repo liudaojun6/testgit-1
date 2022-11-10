@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -54,17 +53,21 @@ public class servlet_scjl extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		request.setCharacterEncoding("UTF-8");
-	    int waresid = Integer.parseInt(request.getParameter("waresid"));
-	    int shopid = Integer.parseInt(request.getParameter("shopid"));
+		Order or = new Order();
+	    Date date = new Date();
+	    
+	    int waresid = Integer.parseInt(request.getParameter("waresid").trim());
+	    int shopid = Integer.parseInt(request.getParameter("shopid").trim());
 	    System.out.print("waresid:"+waresid);
 	    System.out.print("shopid:"+shopid);
 	    String buyerid = request.getParameter("buyerid");//之后自动获取
-	    int waresnumber = Integer.valueOf(request.getParameter("waresnumber"));
+	    String waresnumber= request.getParameter("waresnumber");
+	    if(!waresnumber.equals("")){
+	    	or.setWaresnumber(Integer.valueOf(waresnumber));
+	    }
 	    String buyerphone = request.getParameter("buyerphone");
 	    String buyeraddress = request.getParameter("buyeraddress");
 	    
-	    Order or = new Order();
-	    Date date = new Date();
 	    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 	    String str = format.format(date);
 	    
@@ -72,7 +75,6 @@ public class servlet_scjl extends HttpServlet {
 	    or.setWaresid(waresid);
 	    or.setBuyerid(buyerid);
 	    or.setShopid(shopid);
-	    or.setWaresnumber(waresnumber);
 	    or.setOrdertime(str);
 	    or.setBuyeraddress(buyeraddress);
 	    or.setBuyerphone(buyerphone);
@@ -96,7 +98,7 @@ public class servlet_scjl extends HttpServlet {
 	    	}
 	    	request.getRequestDispatcher("servlet_yhspxx").forward((ServletRequest)request, (ServletResponse)response);
 	    }else{
-	    	request.getRequestDispatcher("admin/admin_buyit.jsp?"+"wid="+waresid+"&shopid="+shopid).forward((ServletRequest)request, (ServletResponse)response);
+	    	request.getRequestDispatcher("admin_buyit.jsp?"+"wid="+waresid+"&shopid="+shopid).forward((ServletRequest)request, (ServletResponse)response);
 	    }
 	  }	
 

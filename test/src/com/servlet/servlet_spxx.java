@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -22,7 +21,6 @@ import com.vo.Wares;
  * Servlet implementation class servlet_dl
  */
 @WebServlet("/servlet_spxx")
-@ServletSecurity(@HttpConstraint(rolesAllowed = "admin"))
 public class servlet_spxx extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -58,7 +56,7 @@ public class servlet_spxx extends HttpServlet {
 	      asd = war.selectwares();
 	    } catch (Exception exception) {}
 	    session.setAttribute("zcxx", asd);
-	    request.getRequestDispatcher("admin/admin_yifabu.jsp").forward((ServletRequest)request, (ServletResponse)response);
+	    request.getRequestDispatcher("admin_yifabu.jsp").forward((ServletRequest)request, (ServletResponse)response);
 	  }
 
 }

@@ -2,8 +2,7 @@ package com.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -65,7 +64,7 @@ public class servlet_pergood2 extends HttpServlet {
 	    } 
 	    HttpSession session = request.getSession();
 	    session.setAttribute("order_result", order_result);
-	    request.getRequestDispatcher("result_order.jsp").forward(request,response);
+	    request.getRequestDispatcher("admin_sqjl.jsp").forward(request,response);
 	}
 
 }

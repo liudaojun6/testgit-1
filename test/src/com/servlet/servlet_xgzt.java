@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -118,7 +117,7 @@ public class servlet_xgzt extends HttpServlet {
 		}
 	    HttpSession session = request.getSession();
 	    session.setAttribute("order_result", order_result);
-	    request.getRequestDispatcher("admin/admin_sqjl.jsp").forward(request,response);
+	    request.getRequestDispatcher("admin_sqjl.jsp").forward(request,response);
 	  }
 
 }

@@ -13,16 +13,24 @@ if(result!=null){%>
 	<%session.setAttribute("zhuce_result", null);
 }%>
 </script>
+<link rel="stylesheet" href="zhuce.css">
 </head>
-<body>
-<a href="admin_login.jsp">返回</a>
-<h1>注册</h1>
-<form action=servlet_sjzc" >
-用户名：<input type="text" name="sellerid"><br/>
-密码：<input type="password" name="sellerpw"><br/>
-商家姓名：<input type="text" name="sellername"><br/>
-商家电话：<input type="text" name="sellerphone"><br/>
-<input type="submit" value="注册">
-</form>
+
+<body class="bodydelu">
+<a class="us_a" href="admin_login.jsp">返回</a>
+    <div class="box">
+        <div class="left"></div>
+        <div class="right">
+            <h4>注册</h4>
+            <form action="servlet_sjzc">
+                <input class="acc" type="text" placeholder="用户名" name="sellerid">
+                <input class="acc" type="password" placeholder="密码" name="sellerpw">
+                <input class="acc" type="text" placeholder="商家姓名" name="sellername">
+                <input class="acc" type="password" placeholder="商家电话" "sellerphone">
+                <input class="submit" type="submit" value="注册">
+            </form>
+            
+        </div>
+    </div>
 </body>
 </html>

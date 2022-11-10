@@ -1,9 +1,8 @@
 package com.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class servlet_tudl
+ * Servlet implementation class servlet_tcdl
  */
 @WebServlet("/servlet_tcdl")
 public class servlet_tcdl extends HttpServlet {
@@ -29,8 +28,7 @@ public class servlet_tcdl extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		this.doPost(request, response);
+		doPost(request,response);
 	}
 
 	/**
@@ -39,6 +37,7 @@ public class servlet_tcdl extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
         session.invalidate();
+//      request.logout();
         response.sendRedirect("servlet_yhspxxcus");
 	}
 

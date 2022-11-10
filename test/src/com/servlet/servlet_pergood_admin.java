@@ -2,8 +2,7 @@ package com.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,7 +52,7 @@ int wid=Integer.parseInt(request.getParameter("wid"));
 	    } 
 	    HttpSession session = request.getSession();
 	    session.setAttribute("ware", ware);
-	    request.getRequestDispatcher("admin/admin_shoptt.jsp").forward(request,response);
+	    request.getRequestDispatcher("admin_shoptt.jsp").forward(request,response);
 	}
 
 }

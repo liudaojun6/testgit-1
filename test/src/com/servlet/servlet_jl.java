@@ -3,8 +3,7 @@ package com.servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -23,7 +22,6 @@ import com.vo.Wares;
  * Servlet implementation class servlet_jl
  */
 @WebServlet("/servlet_jl")
-@ServletSecurity(@HttpConstraint(rolesAllowed = "admin"))
 public class servlet_jl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -70,13 +68,14 @@ public class servlet_jl extends HttpServlet {
 	    	for(int j=0;j<asd_nochoose.size();j++){
 	    		if(asd_choose.get(i).getWaresid()==asd_nochoose.get(j).getWaresid()){
 	    			asd_nochoose.remove(j);
+	    			j=-1;
 	    		}
 	    	}
 	    }
 	    System.out.print(asd);
 	    session.setAttribute("asd_nochoose", asd_nochoose);
 	    session.setAttribute("asd_choose", asd_choose);
-	    request.getRequestDispatcher("admin/admin_sqjl.jsp").forward((ServletRequest)request, (ServletResponse)response);
+	    request.getRequestDispatcher("admin_sqjl.jsp").forward((ServletRequest)request, (ServletResponse)response);
 	  }
 
 

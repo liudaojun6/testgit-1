@@ -3,8 +3,7 @@ package com.servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -21,7 +20,6 @@ import com.vo.historyorder;
  * Servlet implementation class servlet_lsjl
  */
 @WebServlet("/servlet_lsjl")
-@ServletSecurity(@HttpConstraint(rolesAllowed = "admin"))
 public class servlet_lsjl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -57,7 +55,7 @@ public class servlet_lsjl extends HttpServlet {
 		    } catch (Exception exception) {}
 		    System.out.print(asd);
 		    session.setAttribute("lsjlxx", asd);
-		    request.getRequestDispatcher("admin/admin_lsjl.jsp").forward((ServletRequest)request, (ServletResponse)response);
+		    request.getRequestDispatcher("admin_lsjl.jsp").forward((ServletRequest)request, (ServletResponse)response);
 		  }
 
 		

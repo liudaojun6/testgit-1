@@ -21,32 +21,32 @@ if(result!=null){%>
 }%>
 </script>
 </head>
-<body>
+<body class="allbody">
 <%
 	List<Wares> asd= new ArrayList<Wares>();
 	asd=(List<Wares>)session.getAttribute("yhspxxcus");%>
 	<div class="spzhuye">
 	<a class="us_a" href="servlet_yhspxxcus">商城首页</a>
-	<a class="us_a" href="servlet_dl">登录</a>
+	<a class="us_a" href="admin_login.jsp">登录</a>
     <hr />
 		<%for(int i=0;i<asd.size();i++){
 			Wares qwe=new Wares();
 			qwe=asd.get(i);
-			if(qwe.getWaresstate().equals("putaway")){
-			%>
-        <div class="spzhuye1" onclick="window.open('servlet_pergood?wid=<%= qwe.getWaresid()%>','_self')" onmouseover="">
-            <div class="spzhuye1_1">
-                <img src="upload1/<%= qwe.getWarespicture()%>">
-            </div> 
-            <div class="spzhuye1_2">
-                    <%=qwe.getWaresname() %>
-            </div>
-            <div class="spzhuye1_3">
-                    ￥<%=qwe.getWaresprice() %>
-            </div>
-        </div>
-        <%}} %>
-    </div>
+			if(!qwe.getWaresstate().equals("remove")){
+				%>
+	        <div class="spzhuye1" onclick="window.open('servlet_pergood?wid=<%= qwe.getWaresid()%>','_self')">
+	            <div class="spzhuye1_1">
+	                <img src="upload1/<%= qwe.getWarespicture()%>">
+	            </div> 
+	            <div class="spzhuye1_2">
+	                    <%=qwe.getWaresname() %>
+	            </div>
+	            <div class="spzhuye1_3">
+	                    ￥<%=qwe.getWaresprice() %>
+	            </div>
+	        </div>
+	        <%}} %>
+	    </div>
 
     <meta charset="UTF-8">
 </table>

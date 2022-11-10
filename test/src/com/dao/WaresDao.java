@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface WaresDao {
-  void insertwares(Wares paramWares) throws SQLException;
+  String insertwares(Wares paramWares) throws SQLException;
   
   List<Wares> selectwares() throws SQLException;
   

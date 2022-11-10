@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -81,12 +80,12 @@ public class servlet_tjsp extends HttpServlet {
 	    	}catch(NumberFormatException e){
 	    		String fabu_result="商品数量必须是大于0的整数";
 	    		session.setAttribute("fabu_result", fabu_result);
-	    		request.getRequestDispatcher("result_waresup.jsp").forward((ServletRequest)request, (ServletResponse)response);
+	    		request.getRequestDispatcher("admin_waresup.jsp").forward((ServletRequest)request, (ServletResponse)response);
 	    	}
 	    }else{
 	    	String fabu_result="商品数量不能为空";
     		session.setAttribute("fabu_result", fabu_result);
-    		request.getRequestDispatcher("result_waresup.jsp").forward((ServletRequest)request, (ServletResponse)response);
+    		request.getRequestDispatcher("admin_waresup.jsp").forward((ServletRequest)request, (ServletResponse)response);
 	    }
 	    wa.setShopid(shop.getShopid());
 	    wa.setWaresstate("putaway");
@@ -101,13 +100,14 @@ public class servlet_tjsp extends HttpServlet {
 	    if(fabu_result.equals("发布成功")){
 	    	WaresImpl war = new WaresImpl();
 	    	try {
-	    		war.insertwares(wa);
+	    		fabu_result=war.insertwares(wa);
 	    	} catch (SQLException e) {
 	    		e.printStackTrace();
 	    	} 
-	    	request.getRequestDispatcher("admin/admin_waresup.jsp").forward((ServletRequest)request, (ServletResponse)response);
+	    	session.setAttribute("fabu_result", fabu_result);
+	    	request.getRequestDispatcher("admin_waresup.jsp").forward((ServletRequest)request, (ServletResponse)response);
 	    }else{
-	    	request.getRequestDispatcher("admin/admin_waresup.jsp").forward((ServletRequest)request, (ServletResponse)response);
+	    	request.getRequestDispatcher("admin_waresup.jsp").forward((ServletRequest)request, (ServletResponse)response);
 	    }
 	}
 

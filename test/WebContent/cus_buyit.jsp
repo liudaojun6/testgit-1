@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>个人信息填写</title>
-<link rel="stylesheet" href="page.css">
+<link rel="stylesheet" href="buyit.css">
 <script type="text/javascript">
 <%
 String result=(String)session.getAttribute("buyit_result");
@@ -16,7 +16,7 @@ if(result!=null){%>
 }%>
 </script>
 </head>
-<body>
+<body class="allbody">
 <a class="us_a" href="servlet_yhspxxcus">商城首页</a>
 	<a class="us_a" href="admin_login.jsp">登录</a>
     <hr />
@@ -25,17 +25,29 @@ if(result!=null){%>
 	String wid= request.getParameter("wid");
 	String shopid = request.getParameter("shopid");
 %>
-wid=<%=wid%>&nbsp;
-shopid=<%=shopid %>
-<form action="servlet_scjlcus" >
-		<input type="hidden" name="waresid" value=<%=wid %>>
-		<input type="hidden" name="shopid" value=<%=shopid %>>
-客户id：<input type="text" name="buyerid" value=1><br/><%--之后系统自动获取 --%>
-*购买数量：<input type="text" name="waresnumber" value=1><br/>
-*收货地址：<input type="text" name="buyeraddress"><br/>
-*电话号码：<input type="text" name="buyerphone"><br/>
-<input type="submit" value="确定"><br/>
-</form>
+<h1>商品ID:<%=wid%>&nbsp;
+店铺ID:<%=shopid %></h1>
+<h1>自动获取：</h1>
+<h1>客户ID:1</h1>
+
+
+<div class="bodydelu">
+    <div class="box">
+        <div class="left"></div>
+        <div class="right">
+            <h4>填写个人信息</h4>
+            <form action="servlet_scjlcus">              
+		            <input class="acc" type="hidden" name="waresid" value=<%=wid %>>
+					<input  class="acc" type="hidden" name="shopid" value=<%=shopid %>>
+					<input class="acc" type="text" name="buyerid"  placeholder="客户id"><br/><%--之后系统自动获取 --%>
+					<input class="acc" type="hidden" name="waresnumber" value=1>
+					<input class="acc" type="text" name="buyeraddress" placeholder="收货地址(必填)"><br/>
+					<input class="acc" type="text" name="buyerphone" placeholder="电话号码(必填)"><br/>
+                <input class="submit" type="submit" name="submit" value="确认">
+            </form>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
