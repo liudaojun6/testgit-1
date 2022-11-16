@@ -15,8 +15,7 @@
 <script type="text/javascript">
 <%
 String result=(String)session.getAttribute("order_result");
-Wares w=(Wares)session.getAttribute("ware");
-int id=w.getWaresid();
+
 if(result!=null){%>
 	alert("<%=result%>");
 	<%session.setAttribute("order_result", null);
@@ -30,6 +29,9 @@ if(result!=null){%>
 </c:if>
 <c:if test="${not empty sessionScope.user}">
 	<c:if test="${empty sessionScope.order_result}">
+	<c:if test="${not empty sessionScope.ware}">
+	<%Wares w=(Wares)session.getAttribute("ware");
+	int id=w.getWaresid(); %>
     <a class="us_a" href="<%=request.getContextPath()%>/servlet_yhspxx">商品预览</a>
     <a class="us_a" href="<%=request.getContextPath()%>/servlet_spxx">商品记录</a>
     <a class="us_a" href="<%=request.getContextPath()%>/servlet_jl">申请记录</a>
@@ -96,11 +98,14 @@ if(result!=null){%>
 					<td><%=qwe.getOrdertime() %></td>
 					<td><%=qwe.getBuyerphone() %></td>
 					<td><%=qwe.getBuyeraddress() %></td>
-					<td><form action="servlet_pergood2" method="post">
+					<td>
+					<%if(asd_choose.size()==0){ %>
+					<form action="servlet_pergood2" method="post">
 						<input type="hidden" name="orid" value=<%=qwe.getOrderid()%>>
 						<input type="hidden" name="wid" value=<%=qwe.getWaresid() %>>
 						<input type="submit" name="freeze" value="选择">
 					</form> 
+					<%} %>
 					</td>
 				</tr>
 			<%
@@ -134,6 +139,10 @@ if(result!=null){%>
 		}
 	%>
 </table>
+</c:if>
+<c:if test="${empty sessionScope.ware}">
+暂无出售商品
+</c:if>
 </c:if>
 </c:if>
 </body>

@@ -70,7 +70,7 @@ public class servlet_xgzt extends HttpServlet {
 	    
 	    if(type.equals("解冻")){
 	    	w.setWaresstate("putaway");
-	    	order.setOrderstate("已完成");
+	    	order.setOrderstate("未选择");
 	    	order_result="商品已重新上架";
 	    	hisor.setResult("交易失败");
 	    	try {

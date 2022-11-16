@@ -37,12 +37,15 @@ if(result!=null){%>
     <hr />
 <%
 	List<Wares> asd= new ArrayList<Wares>();
-	asd=(List<Wares>)session.getAttribute("yhspxx");%>
+	asd=(List<Wares>)session.getAttribute("yhspxx");
+	int n=0;
+	%>
 	<div class="spzhuye">
 		<%for(int i=0;i<asd.size();i++){
 			Wares qwe=new Wares();
 			qwe=asd.get(i);
 			if(!qwe.getWaresstate().equals("remove")){
+				n++;
 			%>
         <div class="spzhuye1" onclick="window.open('servlet_pergood_admin?wid=<%= qwe.getWaresid()%>','_self')">
             <div class="spzhuye1_1">
@@ -52,11 +55,14 @@ if(result!=null){%>
                     <%=qwe.getWaresname() %>
             </div>
             <div class="spzhuye1_3">
-                    ￥<%=qwe.getWaresprice() %>
+                    元<%=qwe.getWaresprice() %>
             </div>
         </div>
         <%}} %>
     </div>
+    <%if(n==0){ %>
+    暂无出售商品
+    <%} %>
 </c:if>
 </body>
 </html>

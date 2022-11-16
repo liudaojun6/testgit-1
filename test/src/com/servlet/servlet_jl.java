@@ -60,15 +60,17 @@ public class servlet_jl extends HttpServlet {
 	      asd1 = war.selectwares();
 	    } catch (Exception exception) {}
 	    Wares w = new Wares();
-	    Wares ware=null;
-	    w=asd1.get(0);
-	    try {
-	      ware = war.getperwares(w);
-	    } catch (SQLException e) {
-	      e.printStackTrace();
-	    } 
-	    session.setAttribute("ware", ware);
-	    
+	    w=null;
+	    for(int i=0;i<asd1.size();i++) {
+	    	if(asd1.get(i).getWaresstate().equals("remove")) {
+	    		session.setAttribute("ware", w);
+	    	}
+	    	else {
+	    		w=asd1.get(i);
+	    		session.setAttribute("ware", w);
+	    		break;
+	    	}
+	    }
 	    try {
 	      asd = ord.selectorder();
 	    } catch (Exception exception) {}
@@ -79,14 +81,6 @@ public class servlet_jl extends HttpServlet {
 	    		asd_nochoose.add(o);
 	    	}else if(o.getOrderstate().equals("已选择")){
 	    		asd_choose.add(o);
-	    	}
-	    }
-	    for(int i=0;i<asd_choose.size();i++){
-	    	for(int j=0;j<asd_nochoose.size();j++){
-	    		if(asd_choose.get(i).getWaresid()==asd_nochoose.get(j).getWaresid()){
-	    			asd_nochoose.remove(j);
-	    			j=-1;
-	    		}
 	    	}
 	    }
 	    System.out.print(asd);
