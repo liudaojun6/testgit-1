@@ -8,4 +8,5 @@ public interface OrderDao {
   void insertorder(Order paramOrder) throws SQLException;
   Order fullorder(Order paramOrder) throws SQLException;
   List<Order> selectorder() throws SQLException;
+  public List<Order> selectorderbuyerid(String buyerid) throws SQLException;
 }

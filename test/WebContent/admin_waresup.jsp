@@ -27,6 +27,7 @@ if(result!=null){%>
  <a class="us_a" href="<%=request.getContextPath()%>/servlet_yhspxx">商品预览</a>
     <a class="us_a" href="<%=request.getContextPath()%>/servlet_spxx">商品记录</a>
     <a class="us_a" href="<%=request.getContextPath()%>/servlet_jl">申请记录</a>
+    <a class="us_a" href="<%=request.getContextPath()%>/servlet_admin_cus">用户信息</a>
     <a class="us_a" href="admin_change.jsp">修改密码</a>
     <a class="us_a" href="admin_waresup.jsp">上传商品</a>
     <a class="us_a" href="servlet_tcdl">退出登录</a>

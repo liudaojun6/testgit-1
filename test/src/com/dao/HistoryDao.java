@@ -9,4 +9,5 @@ public interface HistoryDao {
 	void insertorder(historyorder or) throws SQLException;
 	List<historyorder> selecthistoryorder() throws SQLException;
 	List<historyorder> selecthistoryorderwaresid(int waresid) throws SQLException;
+	public List<historyorder> selecthistoryorderbuyerid(String buyerid) throws SQLException;
 }

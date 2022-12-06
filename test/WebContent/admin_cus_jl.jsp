@@ -1,15 +1,16 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="com.vo.historyorder"%>
+<%@page import="com.vo.Order"%>
 <%@page import="java.util.List"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>查看历史记录</title>
+<title>查看申请记录</title>
 <link rel="stylesheet" href="page.css">
 </head>
 <body class="allbody">
@@ -25,7 +26,7 @@
     <a class="us_a" href="admin_waresup.jsp">上传商品</a>
     <a class="us_a" href="servlet_tcdl">退出登录</a>
     <hr />
-<table border="1">
+	<table border="1">
 	<tr>
 		<td>订单id</td>
 		<td>商品id</td>
@@ -36,26 +37,48 @@
 		<td>交易结果</td>
 	</tr>
 	<%
-		List<historyorder> asd= new ArrayList<historyorder>();
-		asd=(List<historyorder>)session.getAttribute("lsjlxx");
-		Iterator it =asd.iterator();
-		historyorder qwe=null;
-		while(it.hasNext()){
-			qwe=new historyorder();
-			qwe=(historyorder)it.next();
+		List<Order> ord= new ArrayList<Order>();
+		ord=(List<Order>)session.getAttribute("ord");
+		Iterator oit =ord.iterator();
+		Order oqwe=null;
+		while(oit.hasNext()){
+			oqwe=new Order();
+			oqwe=(Order)oit.next();
 			%>
 				<tr>
-					<td><%=qwe.getHistoryid() %></td>
-					<td><%=qwe.getWaresid() %></td>
-					<td><%=qwe.getBuyerid() %></td>
-					<td><%=qwe.getFinishtime() %></td>
-					<td><%=qwe.getBuyerphone() %></td>
-					<td><%=qwe.getBuyeraddress() %></td>
-					<td><%=qwe.getResult() %></td>
+					<td><%=oqwe.getOrderid() %></td>
+					<td><%=oqwe.getWaresid() %></td>
+					<td><%=oqwe.getBuyerid() %></td>
+					<td><%=oqwe.getOrdertime() %></td>
+					<td><%=oqwe.getBuyerphone() %></td>
+					<td><%=oqwe.getBuyeraddress() %></td>
+					<td><%=oqwe.getOrderstate() %></td>
 				</tr>
 			<%
 		}
 	%>
+	<%
+		List<historyorder> hord= new ArrayList<historyorder>();
+		hord=(List<historyorder>)session.getAttribute("hord");
+		Iterator hit =hord.iterator();
+		historyorder hqwe=null;
+		while(hit.hasNext()){
+			hqwe=new historyorder();
+			hqwe=(historyorder)hit.next();
+			%>
+				<tr>
+					<td><%=hqwe.getHistoryid() %></td>
+					<td><%=hqwe.getWaresid() %></td>
+					<td><%=hqwe.getBuyerid() %></td>
+					<td><%=hqwe.getFinishtime() %></td>
+					<td><%=hqwe.getBuyerphone() %></td>
+					<td><%=hqwe.getBuyeraddress() %></td>
+					<td><%=hqwe.getResult() %></td>
+				</tr>
+			<%
+		}
+	%>
+	</table>
 </c:if>
 </body>
 </html>
