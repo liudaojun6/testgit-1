@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<liberty-plugin-config>
+    <activeBuildProfiles>
+        <profileId>JDK-1.8</profileId>
+    </activeBuildProfiles>
+    <installDirectory>D:\maven\web\webapp\target\liberty\wlp</installDirectory>
+    <serverDirectory>D:\maven\web\webapp\target\liberty\wlp\usr\servers\webappServer</serverDirectory>
+    <userDirectory>D:\maven\web\webapp\target\liberty\wlp\usr</userDirectory>
+    <serverOutputDirectory>D:\maven\web\webapp\target\liberty\wlp\usr\servers\webappServer</serverOutputDirectory>
+    <serverName>webappServer</serverName>
+    <configDirectory>D:\maven\web\webapp\src\main\liberty\config</configDirectory>
+    <configFile>D:\maven\web\webapp\src\main\liberty\config\server.xml</configFile>
+    <appsDirectory>apps</appsDirectory>
+    <looseApplication>true</looseApplication>
+    <stripVersion>false</stripVersion>
+    <installAppPackages>project</installAppPackages>
+    <applicationFilename>webapp.war.xml</applicationFilename>
+    <assemblyArtifact>
+        <groupId>io.openliberty</groupId>
+        <artifactId>openliberty-runtime</artifactId>
+        <version>20.0.0.9</version>
+        <type>zip</type>
+    </assemblyArtifact>
+    <assemblyArchive>D:\maven\repository\io\openliberty\openliberty-runtime\20.0.0.9\openliberty-runtime-20.0.0.9.zip</assemblyArchive>
+    <assemblyInstallDirectory>D:\maven\web\webapp\target\liberty</assemblyInstallDirectory>
+    <refresh>false</refresh>
+    <installAppsConfigDropins>D:\maven\web\webapp\target\liberty\wlp\usr\servers\webappServer\configDropins\defaults\install_apps_configuration_1491924271.xml</installAppsConfigDropins>
+    <projectType>war</projectType>
+    <projectCompileDependency>mysql:mysql-connector-java:5.1.4</projectCompileDependency>
+    <projectCompileDependency>jstl:jstl:1.2</projectCompileDependency>
+    <projectCompileDependency>taglibs:standard:1.1.2</projectCompileDependency>
+    <warSourceDirectory>D:\maven\web\webapp\src\main\webapp</warSourceDirectory>
+</liberty-plugin-config>

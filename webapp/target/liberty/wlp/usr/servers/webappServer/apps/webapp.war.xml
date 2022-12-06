@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archive>
+    <dir sourceOnDisk="D:\maven\web\webapp\src\main\webapp" targetInArchive="/"/>
+    <dir sourceOnDisk="D:\maven\web\webapp\target\classes" targetInArchive="/WEB-INF/classes"/>
+    <file sourceOnDisk="D:\maven\repository\mysql\mysql-connector-java\5.1.4\mysql-connector-java-5.1.4.jar" targetInArchive="/WEB-INF/lib/mysql-connector-java-5.1.4.jar"/>
+    <file sourceOnDisk="D:\maven\repository\jstl\jstl\1.2\jstl-1.2.jar" targetInArchive="/WEB-INF/lib/jstl-1.2.jar"/>
+    <file sourceOnDisk="D:\maven\repository\taglibs\standard\1.1.2\standard-1.1.2.jar" targetInArchive="/WEB-INF/lib/standard-1.1.2.jar"/>
+    <file sourceOnDisk="D:\maven\web\webapp\target\tmp\META-INF\MANIFEST.MF" targetInArchive="/META-INF/MANIFEST.MF"/>
+</archive>
