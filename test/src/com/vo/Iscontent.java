@@ -94,6 +94,15 @@ public class Iscontent {
   }
   public String buyit(Order order){
 	  String result="购买成功";
+	  if(order.getBuyerid().equals("")&&result.equals("购买成功")){
+		  result="客户名不能为空";
+	  }
+	  if(order.getBuyerid().length()>10&&result.equals("购买成功")){
+		  result="客户名过长";
+	  }
+	  if(order.getWaresnumber()<=0&&result.equals("购买成功")){
+		  result="购买数量必须大于0";
+	  }
 	  if(order.getBuyeraddress().equals("")&&result.equals("购买成功")){
 		  result="交易地址不能为空";
 	  }

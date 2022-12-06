@@ -51,6 +51,10 @@ public class servlet_jl extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		request.setCharacterEncoding("UTF-8");
+		
+		//if(wid.length()<1){
+		//	wid="16";
+		//}
 		OrderImpl ord = new OrderImpl();
 	    List<Order> asd = new ArrayList<>();
 	    HttpSession session = request.getSession();
@@ -72,7 +76,7 @@ public class servlet_jl extends HttpServlet {
 	    	}
 	    }
 	    try {
-	      asd = ord.selectorder();
+	      asd = ord.selectorder(w.getWaresid());
 	    } catch (Exception exception) {}
 	    List<Order> asd_nochoose = new ArrayList<>();
 	    List<Order> asd_choose = new ArrayList<>();

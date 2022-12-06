@@ -2,6 +2,7 @@ package com.impl;
 
 import com.dao.OrderDao;
 import com.vo.Order;
+import com.vo.Wares;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -35,12 +36,29 @@ public class OrderImpl implements OrderDao {
     ps.setString(7, o.getBuyerphone());
     ps.setString(8, o.getOrderstate());
     ps.execute();
+    Wares w = new Wares();
+    w.setWaresid(o.getWaresid());
+    WaresImpl wimp= new WaresImpl();
+    w=wimp.getperwares(w);
+    int ku=w.getWaresnumber()-o.getWaresnumber();
+    String sql2 = "update wares set waresnumber=? where waresid=?";
+    PreparedStatement ps2 = conn.prepareStatement(sql2);
+    ps2.setInt(1, ku);
+    ps2.setInt(2,o.getWaresid());
+    ps2.execute();
+    if(ku==0){
+    	Wares w2 = new Wares();
+    	w2.setWaresid(o.getWaresid());
+    	w2.setWaresstate("remove");
+    	wimp.updatezt(w2);
+    }
   }
   
-  public List<Order> selectorder() throws SQLException {
+  public List<Order> selectorder(int wid) throws SQLException {
     Connection conn = getConnection();
-    String sql = "select * from orderr";
+    String sql = "select * from orderr where waresid=?";
     PreparedStatement ps = conn.prepareStatement(sql);
+    ps.setInt(1,wid);
     ResultSet rs = ps.executeQuery();
     List<Order> asd = new ArrayList<>();
     Order order = null;
@@ -90,6 +108,24 @@ public void updatezt(Order o) throws SQLException {
     ps.setInt(2, o.getOrderid());
     ps.setString(1, o.getOrderstate());
     ps.execute();
+    /*Wares w = new Wares();
+    w.setWaresid(o.getWaresid());
+    WaresImpl wimp= new WaresImpl();
+    w=wimp.getperwares(w);
+    if(o.getOrderstate().equals("未选择")){
+    	int ku=w.getWaresnumber()+o.getWaresnumber();
+    	String sql2 = "update wares set waresnumber=? where waresid=?";
+    	PreparedStatement ps2 = conn.prepareStatement(sql2);
+    	ps2.setInt(1, ku);
+    	ps2.setInt(2,o.getWaresid());
+    	ps2.execute();
+    	if(ku>0){
+    		Wares w2 = new Wares();
+    		w2.setWaresid(o.getWaresid());
+    		w2.setWaresstate("putaway");
+    		wimp.updatezt(w2);
+    	}
+    }*/
   }
 public void updatezt_all(Order o) throws SQLException {
     Connection conn = getConnection();

@@ -55,13 +55,13 @@ if(result!=null){%>
                     <%=qwe.getWaresname() %>
             </div>
             <div class="spzhuye1_3">
-                    元<%=qwe.getWaresprice() %>
+                    <%=qwe.getWaresprice() %>元
             </div>
         </div>
         <%}} %>
     </div>
     <%if(n==0){ %>
-    暂无出售商品
+    <h1 style="text-align:center;">暂无出售商品</h1>
     <%} %>
 </c:if>
 </body>

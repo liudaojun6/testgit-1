@@ -17,7 +17,7 @@ if(result!=null){%>
 }%>
 </script>
 </head>
-<body>
+<body class="allbody">
 <c:if test="${empty sessionScope.user}">
 <%response.sendRedirect("admin_login.jsp"); %>
 </c:if>
@@ -33,6 +33,7 @@ if(result!=null){%>
 <% 
 	String wid= request.getParameter("wid");
 	String shopid = request.getParameter("shopid");
+	String wnumber = request.getParameter("wnumber");
 %>
 <h1>商品ID:<%=wid%>&nbsp;
 店铺ID:<%=shopid %></h1>
@@ -40,7 +41,7 @@ if(result!=null){%>
 <h1>客户ID:1</h1>
 
 
-<div class="bodydelu">
+<div>
     <div class="box">
         <div class="left"></div>
         <div class="right">
@@ -49,7 +50,8 @@ if(result!=null){%>
 		            <input class="acc" type="hidden" name="waresid" value=<%=wid %>>
 					<input  class="acc" type="hidden" name="shopid" value=<%=shopid %>>
 					<input class="acc" type="text" name="buyerid"  placeholder="客户名"><br/><%--之后系统自动获取 --%>
-					<input class="acc" type="hidden" name="waresnumber" value=1>
+					<input class="acc" type="text" name="waresnumber" placeholder="购买数量">
+					<input class="acc" type="hidden" name="wnumber" value=<%=wnumber %>>
 					<input class="acc" type="text" name="buyeraddress" placeholder="收货地址(必填)"><br/>
 					<input class="acc" type="text" name="buyerphone" placeholder="电话号码(必填)"><br/>
                 <input class="submit" type="submit" name="submit" value="确认">

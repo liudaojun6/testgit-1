@@ -32,6 +32,7 @@
 		<td>交易时间</td>
 		<td>买家电话</td>
 		<td>买家地址</td>
+		<td>交易数量</td>
 		<td>交易结果</td>
 	</tr>
 	<%
@@ -50,6 +51,7 @@
 					<td><%=qwe.getFinishtime() %></td>
 					<td><%=qwe.getBuyerphone() %></td>
 					<td><%=qwe.getBuyeraddress() %></td>
+					<td><%=qwe.getWaresnumber() %>
 					<td><%=qwe.getResult() %></td>
 				</tr>
 			<%

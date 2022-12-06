@@ -64,7 +64,7 @@
             <%=qwe.getWaresstate() %>
         </div>
         <div class="showdd2_4">
-            <a href="servlet_lsjl?wid=<%= qwe.getWaresid()%>">查看历史申请</a>
+            <a href="servlet_lsjl?wid=<%= qwe.getWaresid()%>">查看历史申请</a><br/>
         </div>
  
  </div>      

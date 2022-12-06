@@ -61,10 +61,8 @@ public class servlet_scjl extends HttpServlet {
 	    System.out.print("waresid:"+waresid);
 	    System.out.print("shopid:"+shopid);
 	    String buyerid = request.getParameter("buyerid");//之后自动获取
-	    String waresnumber= request.getParameter("waresnumber");
-	    if(!waresnumber.equals("")){
-	    	or.setWaresnumber(Integer.valueOf(waresnumber));
-	    }
+	    int waresnumber = 0;
+	    String wnumber = request.getParameter("wnumber");
 	    String buyerphone = request.getParameter("buyerphone");
 	    String buyeraddress = request.getParameter("buyeraddress");
 	    
@@ -84,7 +82,22 @@ public class servlet_scjl extends HttpServlet {
 	    System.out.print(or);
 	    Iscontent iscontent=new Iscontent();
 	    
-	    String buyit_result=iscontent.buyit(or);
+	    String buyit_result="购买成功";
+	    try{
+		    waresnumber = Integer.parseInt(request.getParameter("waresnumber"));
+		    or.setWaresnumber(waresnumber);
+		    } catch (NumberFormatException e) {
+		    	buyit_result="购买数量错误";
+		    	e.printStackTrace();
+	    }
+	    if(buyit_result.equals("购买成功")){
+	    	buyit_result=iscontent.buyit(or);
+	    }
+	    if(buyit_result.equals("购买成功")){
+	    	if(Integer.valueOf(wnumber)<waresnumber){
+	    		buyit_result="库存不足";
+	    	}
+	    }
 	    HttpSession session = request.getSession();
 	    session.setAttribute("buyit_result", buyit_result);
 	    if(buyit_result.equals("购买成功")){

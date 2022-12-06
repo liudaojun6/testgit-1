@@ -54,7 +54,8 @@ public class servlet_scjlcus extends HttpServlet {
 			    System.out.print("waresid:"+waresid);
 			    System.out.print("shopid:"+shopid);
 			    String buyerid = request.getParameter("buyerid");//之后自动获取
-			    int waresnumber = Integer.valueOf(request.getParameter("waresnumber"));
+			    int waresnumber = 0;
+			    String wnumber = request.getParameter("wnumber");
 			    String buyerphone = request.getParameter("buyerphone");
 			    String buyeraddress = request.getParameter("buyeraddress");
 			    
@@ -67,17 +68,31 @@ public class servlet_scjlcus extends HttpServlet {
 			    or.setWaresid(waresid);
 			    or.setBuyerid(buyerid);
 			    or.setShopid(shopid);
-			    or.setWaresnumber(waresnumber);
 			    or.setOrdertime(str);
 			    or.setBuyeraddress(buyeraddress);
 			    or.setBuyerphone(buyerphone);
-			    or.setOrderstate("选择");
+			    or.setOrderstate("未选择");
 			    
 			    System.out.println(or);
 			    System.out.print(or);
 			    Iscontent iscontent=new Iscontent();
 			    
-			    String buyit_result=iscontent.buyit(or);
+			    String buyit_result="购买成功";
+			    try{
+				    waresnumber = Integer.parseInt(request.getParameter("waresnumber"));
+				    or.setWaresnumber(waresnumber);
+				    } catch (NumberFormatException e) {
+				    	buyit_result="购买数量错误";
+				    	e.printStackTrace();
+				    }
+			    if(buyit_result.equals("购买成功")){
+			    	buyit_result=iscontent.buyit(or);
+			    }
+			    if(buyit_result.equals("购买成功")){
+			    	if(Integer.valueOf(wnumber)<waresnumber){
+			    		buyit_result="库存不足";
+			    	}
+			    }
 			    HttpSession session = request.getSession();
 			    session.setAttribute("buyit_result", buyit_result);
 			    if(buyit_result.equals("购买成功")){

@@ -65,16 +65,19 @@ public class servlet_xgzt extends HttpServlet {
 	    
 	    WaresImpl war = new WaresImpl();
 	    OrderImpl ord=new OrderImpl();
+	    try {
+			order=ord.fullorder(order);
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
 	    
 	    historyorder hisor=new historyorder();
 	    
 	    if(type.equals("解冻")){
-	    	w.setWaresstate("putaway");
 	    	order.setOrderstate("未选择");
-	    	order_result="商品已重新上架";
+	    	order_result="订单已取消";
 	    	hisor.setResult("交易失败");
 	    	try {
-			      war.updatezt(w);
 			      ord.updatezt(order);
 			    } catch (SQLException e) {
 			      e.printStackTrace();
@@ -83,11 +86,10 @@ public class servlet_xgzt extends HttpServlet {
 	    else if(type.equals("下架")){
 	    	w.setWaresstate("remove");
 	    	order.setOrderstate("已完成");
-	    	order_result="商品已下架";
+	    	order_result="订单已完成";
 	    	hisor.setResult("交易成功");
 	    	try {
-			      war.updatezt(w);
-			      ord.updatezt_all(order);
+	    			ord.updatezt(order);
 			    } catch (SQLException e) {
 			      e.printStackTrace();
 			    } 

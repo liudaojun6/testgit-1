@@ -3,6 +3,7 @@ package com.servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,10 +44,6 @@ public class servlet_pergood2 extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int wid=Integer.parseInt(request.getParameter("wid"));
 		int orid=Integer.parseInt(request.getParameter("orid"));
-		
-	    Wares w = new Wares();
-	    w.setWaresid(wid);
-	    w.setWaresstate("freeze");
 	    
 	    Order o = new Order();
 	    o.setOrderid(orid);
@@ -56,9 +53,8 @@ public class servlet_pergood2 extends HttpServlet {
 	    OrderImpl ord = new OrderImpl();
 	    String order_result="订单状态修改错误";
 	    try {
-	      war.updatezt(w);
 	      ord.updatezt(o);
-	      order_result="商品已冻结";
+	      order_result="订单已选择";
 	    } catch (SQLException e) {
 	      e.printStackTrace();
 	    } 

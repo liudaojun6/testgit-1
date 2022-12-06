@@ -24,11 +24,8 @@ if(result!=null){%>
 <% 
 	String wid= request.getParameter("wid");
 	String shopid = request.getParameter("shopid");
+	String wnumber = request.getParameter("wnumber");
 %>
-<h1>商品ID:<%=wid%>&nbsp;
-店铺ID:<%=shopid %></h1>
-<h1>自动获取：</h1>
-<h1>客户ID:1</h1>
 
 
 <div class="bodydelu">
@@ -39,11 +36,12 @@ if(result!=null){%>
             <form action="servlet_scjlcus">              
 		            <input class="acc" type="hidden" name="waresid" value=<%=wid %>>
 					<input  class="acc" type="hidden" name="shopid" value=<%=shopid %>>
-					<input class="acc" type="text" name="buyerid"  placeholder="客户id"><br/><%--之后系统自动获取 --%>
-					<input class="acc" type="hidden" name="waresnumber" value=1>
+					<input class="acc" type="text" name="buyerid"  placeholder="客户名"><br/><%--之后系统自动获取 --%>
+					<input class="acc" type="text" name="waresnumber" placeholder="购买数量">
+					<input class="acc" type="hidden" name="wnumber" value=<%=wnumber %>>
 					<input class="acc" type="text" name="buyeraddress" placeholder="收货地址(必填)"><br/>
 					<input class="acc" type="text" name="buyerphone" placeholder="电话号码(必填)"><br/>
-                <input class="submit" type="submit" name="submit" value="确认">
+                	<input class="submit" type="submit" name="submit" value="确认">
             </form>
         </div>
     </div>

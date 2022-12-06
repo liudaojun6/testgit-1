@@ -40,12 +40,13 @@ int id=w.getWaresid();
             <div class="spxq1_1_1">
              商品价格：<%=w.getWaresprice()%>元
             </div>
-            <br/>
-            <br/>
-            <br/>
+           	<div class="spxq1_1_1">
+             库存：<%=w.getWaresnumber()%>
+            </div>
             <form action="admin_buyit.jsp">
             	<input type="hidden" name="wid" value="<%=w.getWaresid() %>">
             	<input type="hidden" name="shopid" value="<%=w.getShopid() %>">
+            	<input type="hidden" name="wnumber" value="<%=w.getWaresnumber() %>">
             	<%if(w.getWaresstate().equals("putaway")){ %>
                 <input class="spxqgm" type="submit" name="submit" value="购买并填写个人信息">
                 <%}else{ %>
