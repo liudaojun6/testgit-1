@@ -56,9 +56,8 @@ public class OrderImpl implements OrderDao {
   
   public List<Order> selectorder(int wid) throws SQLException {
     Connection conn = getConnection();
-    String sql = "select * from orderr where waresid=?";
+    String sql = "select * from orderr";
     PreparedStatement ps = conn.prepareStatement(sql);
-    ps.setInt(1,wid);
     ResultSet rs = ps.executeQuery();
     List<Order> asd = new ArrayList<>();
     Order order = null;
