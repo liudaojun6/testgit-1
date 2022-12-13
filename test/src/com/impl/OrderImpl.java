@@ -36,22 +36,8 @@ public class OrderImpl implements OrderDao {
     ps.setString(7, o.getBuyerphone());
     ps.setString(8, o.getOrderstate());
     ps.execute();
-    Wares w = new Wares();
-    w.setWaresid(o.getWaresid());
-    WaresImpl wimp= new WaresImpl();
-    w=wimp.getperwares(w);
-    int ku=w.getWaresnumber()-o.getWaresnumber();
-    String sql2 = "update wares set waresnumber=? where waresid=?";
-    PreparedStatement ps2 = conn.prepareStatement(sql2);
-    ps2.setInt(1, ku);
-    ps2.setInt(2,o.getWaresid());
-    ps2.execute();
-    if(ku==0){
-    	Wares w2 = new Wares();
-    	w2.setWaresid(o.getWaresid());
-    	w2.setWaresstate("remove");
-    	wimp.updatezt(w2);
-    }
+    ps.close();
+    conn.close();
   }
   
   public List<Order> selectorder(int wid) throws SQLException {
@@ -98,6 +84,9 @@ public Order fullorder(Order order) throws SQLException {
         order.setBuyerphone(rs.getString(8));
         order.setOrderstate(rs.getString(9));
     } 
+    rs.close();
+    ps.close();
+    conn.close();
     return order;
 }
 public void updatezt(Order o) throws SQLException {
@@ -107,11 +96,29 @@ public void updatezt(Order o) throws SQLException {
     ps.setInt(2, o.getOrderid());
     ps.setString(1, o.getOrderstate());
     ps.execute();
-    /*Wares w = new Wares();
+    OrderImpl oimp = new OrderImpl();
+    o=oimp.fullorder(o);
+    Wares w = new Wares();
     w.setWaresid(o.getWaresid());
-    WaresImpl wimp= new WaresImpl();
+    WaresImpl wimp = new WaresImpl();
     w=wimp.getperwares(w);
-    if(o.getOrderstate().equals("未选择")){
+    if(o.getOrderstate().equals("已选择")){
+    	System.out.println("w"+w.getWaresnumber());
+    	System.out.println("o"+o.getWaresnumber());
+    	int ku=w.getWaresnumber()-o.getWaresnumber();
+    	String sql2 = "update wares set waresnumber=? where waresid=?";
+    	PreparedStatement ps2 = conn.prepareStatement(sql2);
+    	ps2.setInt(1, ku);
+    	ps2.setInt(2,o.getWaresid());
+    	ps2.execute();
+    	if(ku==0){
+    		Wares w2 = new Wares();
+    		w2.setWaresid(o.getWaresid());
+    		w2.setWaresstate("freeze");
+    		wimp.updatezt(w2);
+    	}
+    }
+    else if(o.getOrderstate().equals("未选择")){
     	int ku=w.getWaresnumber()+o.getWaresnumber();
     	String sql2 = "update wares set waresnumber=? where waresid=?";
     	PreparedStatement ps2 = conn.prepareStatement(sql2);
@@ -124,7 +131,19 @@ public void updatezt(Order o) throws SQLException {
     		w2.setWaresstate("putaway");
     		wimp.updatezt(w2);
     	}
-    }*/
+    }
+    else if(o.getOrderstate().equals("已完成")){
+    	int ku=w.getWaresnumber();
+    	if(ku==0){
+    		Wares w2 = new Wares();
+    		w2.setWaresid(o.getWaresid());
+    		w2.setWaresstate("remove");
+    		wimp.updatezt(w2);
+    		oimp.updatezt_all(o);
+    	}
+    }
+    ps.close();
+    conn.close();
   }
 public void updatezt_all(Order o) throws SQLException {
     Connection conn = getConnection();
@@ -133,5 +152,7 @@ public void updatezt_all(Order o) throws SQLException {
     ps.setInt(2, o.getWaresid());
     ps.setString(1, o.getOrderstate());
     ps.execute();
+    ps.close();
+    conn.close();
   }
 }

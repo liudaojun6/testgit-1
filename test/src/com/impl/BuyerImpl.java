@@ -26,6 +26,8 @@ public class BuyerImpl implements BuyerDao {
     ps.setString(2, b.getBuyerid());
     ps.setString(3, b.getBuyerpw());
     ps.execute();
+    ps.close();
+    conn.close();
     return null;
   }
   
@@ -37,5 +39,7 @@ public class BuyerImpl implements BuyerDao {
     ps.setString(2, b.getBuyerphone());
     ps.setString(3, b.getBuyerid());
     ps.execute();
+    ps.close();
+    conn.close();
   }
 }

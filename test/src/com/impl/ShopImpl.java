@@ -35,6 +35,9 @@ public class ShopImpl implements ShopDao {
       shop.setShopname(rs.getString(3));
       shop.setShopcreated(rs.getString(4));
     } 
+    rs.close();
+    ps.close();
+    conn.close();
     return shop;
   }
 }

@@ -40,6 +40,8 @@ public class WaresImpl implements WaresDao {
     ps.execute();
     ps.close();
     conn.close();
+    ps.close();
+    conn.close();
     return result;
   }
   
@@ -67,6 +69,8 @@ public class WaresImpl implements WaresDao {
     rs.close();
     stat.close();
     conn.close();
+    rs.close();
+    conn.close();
     return asd;
   }
   
@@ -77,6 +81,8 @@ public class WaresImpl implements WaresDao {
     ps.setInt(2, w.getWaresid());
     ps.setString(1, w.getWaresstate());
     ps.execute();
+    ps.close();
+    conn.close();
   }
   
   public void deleteware_name(Wares w) throws SQLException {
@@ -85,6 +91,8 @@ public class WaresImpl implements WaresDao {
 	    PreparedStatement ps = conn.prepareStatement(sql);
 	    ps.setString(1, w.getWaresname());
 	    ps.execute();
+	    ps.close();
+	    conn.close();
 	  }
   
   public Wares getperwares(Wares w) throws SQLException {
@@ -107,6 +115,9 @@ public class WaresImpl implements WaresDao {
       wares.setOldprice(rs.getDouble(10));
     } 
     //System.out.print(wares+"sjk");
+    rs.close();
+    ps.close();
+    conn.close();
     return wares;
   }
 }

@@ -47,17 +47,34 @@ public class servlet_pergood2 extends HttpServlet {
 	    
 	    Order o = new Order();
 	    o.setOrderid(orid);
-	    o.setOrderstate("已选择");
 	    
-	    WaresImpl war = new WaresImpl();
 	    OrderImpl ord = new OrderImpl();
-	    String order_result="订单状态修改错误";
 	    try {
-	      ord.updatezt(o);
-	      order_result="订单已选择";
-	    } catch (SQLException e) {
-	      e.printStackTrace();
-	    } 
+			o=ord.fullorder(o);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+	    o.setOrderstate("已选择");
+	    Wares w = new Wares();
+	    w.setWaresid(o.getWaresid());
+	    WaresImpl war = new WaresImpl();
+	    try {
+			w=war.getperwares(w);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    String order_result="订单状态修改错误";
+	    if(w.getWaresnumber()<o.getWaresnumber()){
+	    	order_result="库存不足";
+	    }else{
+	    	try {
+	    		ord.updatezt(o);
+	    		order_result="订单已选择";
+	    	} catch (SQLException e) {
+	    		e.printStackTrace();
+	    	} 
+	    }
 	    HttpSession session = request.getSession();
 	    session.setAttribute("order_result", order_result);
 	    request.getRequestDispatcher("admin_sqjl.jsp").forward(request,response);

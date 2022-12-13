@@ -11,6 +11,7 @@ public class Iscontent {
       qwe = new Seller();
       qwe = it.next();
       String dd = String.valueOf(qwe.getSellerid());
+      System.out.println(dd);
       if (dd.equals(temple.getSellerid())) {
         if (qwe.getSellerpw().equals(temple.getSellerpw())) {
           dl_result = "登录成功";

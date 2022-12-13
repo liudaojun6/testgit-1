@@ -92,6 +92,7 @@ public class HistoryImpl implements HistoryDao{
 		    ps.setString(8, or.getBuyerphone());
 		    ps.setString(9, or.getResult());
 		    ps.execute();
-		  
+		    ps.close();
+		    conn.close();
 	  }
 }

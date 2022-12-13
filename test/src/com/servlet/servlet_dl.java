@@ -64,8 +64,12 @@ public class servlet_dl extends HttpServlet {
 	    ShopImpl sho = new ShopImpl();
 	    List<Seller> asd = new ArrayList<>();
 	    try {
-	      asd = sel.selectsellerpw();
-	    } catch (Exception exception) {}
+			asd=sel.selectsellerpw();
+			System.out.println("size"+asd.size());
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+	    System.out.println("size"+asd.size());
 	    Iterator<Seller> it = asd.iterator();
 	    String dl_result = null;
 	    Iscontent iscontent = new Iscontent();

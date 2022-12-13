@@ -32,6 +32,8 @@ public class SellerImpl implements SellerDao {
     ps.setString(3, s.getSellerpw());
     ps.setString(4, s.getSellerphone());
     ps.execute();
+    ps.close();
+    conn.close();
   }
   
   public Seller updateseller(Seller s) throws SQLException {
@@ -39,6 +41,8 @@ public class SellerImpl implements SellerDao {
     String sql = "update seller set sellerphone=? where sellerid=?";
     PreparedStatement ps = conn.prepareStatement(sql);
     ps.execute();
+    ps.close();
+    conn.close();
     return null;
   }
   
@@ -49,6 +53,8 @@ public class SellerImpl implements SellerDao {
     ps.setString(1, s.getSellerpw());
     ps.setString(2, s.getSellerid());
     ps.execute();
+    ps.close();
+    conn.close();
   }
   
   public Seller sellerlogin(Seller s) throws SQLException {
@@ -63,6 +69,9 @@ public class SellerImpl implements SellerDao {
       seller = new Seller();
       seller.setSellername(rs.getString(1));
     } 
+    rs.close();
+    ps.close();
+    conn.close();
     return seller;
   }
   
@@ -82,6 +91,7 @@ public class SellerImpl implements SellerDao {
       seller.setShopid(rs.getInt(5));
       asd.add(seller);
     } 
+    System.out.println("aaa:"+asd.size());
     rs.close();
     stat.close();
     conn.close();
