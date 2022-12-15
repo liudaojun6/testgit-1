@@ -2,6 +2,10 @@ package com.servlet;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -52,6 +56,22 @@ public class FileUpload extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
+    	File f = new File(this.getClass().getResource("../..").getPath());
+    	String str=f.getAbsolutePath();
+    	try {
+    		str=URLDecoder.decode(str, "UTF-8");
+    	} catch (UnsupportedEncodingException e1) {
+    		e1.printStackTrace();
+    	}
+
+    	System.out.println(str);
+    	str=str.replace("\\", "/");
+    	for(int i=0;i<2;i++){
+    		int index = str.lastIndexOf("/");
+    		str = str.substring(0, index);
+    	}
+    	System.out.println(str);
+    	str=str+"/upload1/";
 		String fn = null;
 	    try {
 	      DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -66,7 +86,7 @@ public class FileUpload extends HttpServlet {
 	        } 
 	        try {
 	          String ofn = fi.getName();
-	          String updir = "C:\\Users\\周\\Desktop\\验收待完善(1)\\验收待完善\\test\\WebContent\\upload1\\";//这里我写死了request.getServletContext().getRealPath("/upload1");
+	          String updir = str;
 	          String ext = ofn.substring(ofn.lastIndexOf("."));
 	          String fnf = UUID.randomUUID().toString();
 	          fn = String.valueOf(fnf) + ext;

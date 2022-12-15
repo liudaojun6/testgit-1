@@ -26,17 +26,16 @@ public class WaresImpl implements WaresDao {
   public String insertwares(Wares w) throws SQLException {
 	  String result="发布成功";
     Connection conn = getConnection();   
-    String sql = "insert into wares(waresid,waresname,waresprice,waresnumber,shopid,waresstate,warespicture,waresclass,matketing) values(?,?,?,?,?,?,?,?,?)";
+    String sql = "insert into wares(waresname,waresprice,waresnumber,shopid,waresstate,warespicture,waresclass,matketing) values(?,?,?,?,?,?,?,?)";
     PreparedStatement ps = conn.prepareStatement(sql);
-    ps.setInt(1, 0);
-    ps.setString(2, w.getWaresname());
-    ps.setDouble(3, w.getWaresprice().doubleValue());
-    ps.setInt(4, w.getWaresnumber());
-    ps.setInt(5, w.getShopid());
-    ps.setString(6, w.getWaresstate());
-    ps.setString(7, w.getWarespicture());
-    ps.setString(8, w.getWaresclass());
-    ps.setString(9, w.getMatkering());
+    ps.setString(1, w.getWaresname());
+    ps.setDouble(2, w.getWaresprice().doubleValue());
+    ps.setInt(3, w.getWaresnumber());
+    ps.setInt(4, w.getShopid());
+    ps.setString(5, w.getWaresstate());
+    ps.setString(6, w.getWarespicture());
+    ps.setString(7, w.getWaresclass());
+    ps.setString(8, w.getMatkering());
     ps.execute();
     ps.close();
     conn.close();

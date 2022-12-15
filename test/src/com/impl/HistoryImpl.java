@@ -80,17 +80,16 @@ public class HistoryImpl implements HistoryDao{
 	  public void insertorder(historyorder or) throws SQLException{
 		  
 		  Connection conn = getConnection();
-		    String sql = "insert into historyorder values(?,?,?,?,?,?,?,?,?)";
+		    String sql = "insert into historyorder(waresid,shopid,buyerid,waresnumber,finishtime,buyeraddress,buyerphone,result) values(?,?,?,?,?,?,?,?,?)";
 		    PreparedStatement ps = conn.prepareStatement(sql);
-		    ps.setInt(1, 0);
-		    ps.setInt(2, or.getWaresid());
-		    ps.setInt(3, or.getShopid());
-		    ps.setString(4, or.getBuyerid());
-		    ps.setInt(5, or.getWaresnumber());
-		    ps.setString(6, or.getFinishtime());
-		    ps.setString(7, or.getBuyeraddress());
-		    ps.setString(8, or.getBuyerphone());
-		    ps.setString(9, or.getResult());
+		    ps.setInt(1, or.getWaresid());
+		    ps.setInt(2, or.getShopid());
+		    ps.setString(3, or.getBuyerid());
+		    ps.setInt(4, or.getWaresnumber());
+		    ps.setString(5, or.getFinishtime());
+		    ps.setString(6, or.getBuyeraddress());
+		    ps.setString(7, or.getBuyerphone());
+		    ps.setString(8, or.getResult());
 		    ps.execute();
 		    ps.close();
 		    conn.close();
