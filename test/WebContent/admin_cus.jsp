@@ -1,6 +1,7 @@
+<%@page import="com.vo.Wares"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="com.vo.historyorder"%>
+<%@page import="com.vo.Buyer"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -9,8 +10,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>查看历史记录</title>
+<title>Insert title here</title>
 <link rel="stylesheet" href="page.css">
+<script type="text/javascript">
+<%
+String result=(String)session.getAttribute("order_result");
+
+if(result!=null){%>
+	alert("<%=result%>");
+	<%session.setAttribute("order_result", null);
+	response.sendRedirect("servlet_jl");
+}%>
+</script>
 </head>
 <body class="allbody">
 <c:if test="${empty sessionScope.user}">
@@ -25,39 +36,39 @@
     <a class="us_a" href="admin_waresup.jsp">上传商品</a>
     <a class="us_a" href="servlet_tcdl">退出登录</a>
     <hr />
+  
 <table border="1">
 	<tr>
-		<td>订单id</td>
-		<td>商品id</td>
-		<td>客户名</td>
-		<td>交易时间</td>
-		<td>买家电话</td>
-		<td>买家地址</td>
-		<td>交易数量</td>
-		<td>交易结果</td>
+		<td>用户名</td>
+		<td>用户账号</td>
+		<td>用户地址</td>
+		<td>用户电话</td>
+		<td>购买历史</td>
 	</tr>
-	<%
-		List<historyorder> asd= new ArrayList<historyorder>();
-		asd=(List<historyorder>)session.getAttribute("lsjlxx");
-		Iterator it =asd.iterator();
-		historyorder qwe=null;
+	<%	
+		List<Buyer> asd= new ArrayList<Buyer>();
+		asd=(List<Buyer>)session.getAttribute("buy");
+		Buyer qwe=null;	
+		Iterator it=asd.iterator();
 		while(it.hasNext()){
-			qwe=new historyorder();
-			qwe=(historyorder)it.next();
-			%>
+			qwe=new Buyer();
+			qwe=(Buyer)it.next();%>
 				<tr>
-					<td><%=qwe.getHistoryid() %></td>
-					<td><%=qwe.getWaresid() %></td>
+					<td><%=qwe.getBuyername() %></td>
 					<td><%=qwe.getBuyerid() %></td>
-					<td><%=qwe.getFinishtime() %></td>
-					<td><%=qwe.getBuyerphone() %></td>
 					<td><%=qwe.getBuyeraddress() %></td>
-					<td><%=qwe.getWaresnumber() %>
-					<td><%=qwe.getResult() %></td>
+					<td><%=qwe.getBuyerphone() %></td>
+					<td><form action="servlet_admin_cus_jl" method="post">
+						<input type="hidden" name="buyerid" value=<%=qwe.getBuyerid()%>>
+						<input type="submit" name="apply" value="查看申请">
+					</form> 
+					</td>
 				</tr>
 			<%
 		}
+		
 	%>
+</table>
 </c:if>
 </body>
 </html>

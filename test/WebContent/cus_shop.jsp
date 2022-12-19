@@ -29,7 +29,8 @@ if(result!=null){%>
 	%>
 	<div class="spzhuye">
 	<a class="us_a" href="servlet_yhspxxcus">商城首页</a>
-	<a class="us_a" href="admin_login.jsp">登录</a>
+	<a class="us_a" href="admin_login.jsp">商家页面</a>
+	<a class="us_a" href="cus_record.jsp">个人中心</a>
     <hr />
 		<%for(int i=0;i<asd.size();i++){
 			Wares qwe=new Wares();

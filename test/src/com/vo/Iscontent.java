@@ -23,7 +23,24 @@ public class Iscontent {
     } 
     return dl_result;
   }
-  
+  public String cusdl(Iterator<Buyer> it, Buyer temple) {
+	    Buyer qwe = null;
+	    String cus_dl_result = "用户名或密码错误";
+	    while (it.hasNext()) {
+	      qwe = new Buyer();
+	      qwe = it.next();
+	      String dd = String.valueOf(qwe.getBuyerid());
+	      if (dd.equals(temple.getBuyerid())) {
+	        if (qwe.getBuyerpw().equals(temple.getBuyerpw())) {
+	          cus_dl_result = "登录成功";
+	          temple = qwe;
+	          continue;
+	        } 
+	        cus_dl_result = "密码错误";
+	      } 
+	    } 
+	    return cus_dl_result;
+	  }
   public String xgsjmm(Seller seller, String pwd1, String pwd2, String pwd3) {
     String xgsjmm_result = "修改成功";
     if (seller.getSellerpw().equals(pwd1)) {
