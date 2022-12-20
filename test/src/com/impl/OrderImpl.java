@@ -40,7 +40,7 @@ public class OrderImpl implements OrderDao {
     conn.close();
   }
   
-  public List<Order> selectorder(int wid) throws SQLException {
+  public List<Order> selectorder() throws SQLException {
     Connection conn = getConnection();
     String sql = "select * from orderr";
     PreparedStatement ps = conn.prepareStatement(sql);

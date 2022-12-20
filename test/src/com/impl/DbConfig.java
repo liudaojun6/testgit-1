@@ -38,6 +38,7 @@ public class DbConfig {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return DriverManager.getConnection(URL);
+		//return DriverManager.getConnection(URL);
+		return DriverManager.getConnection("jdbc:sqlite:C:\\Users\\周\\Desktop\\验收待完善(1)\\验收待完善\\test\\WebContent\\db\\test.db");
 	}
 }
