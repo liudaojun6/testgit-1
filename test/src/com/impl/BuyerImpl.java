@@ -5,7 +5,11 @@ import com.vo.Buyer;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BuyerImpl implements BuyerDao {
   Connection getConnection() {
@@ -42,4 +46,27 @@ public class BuyerImpl implements BuyerDao {
     ps.close();
     conn.close();
   }
+
+  public List<Buyer> selectbuyerpw() throws SQLException {
+	    String sql = "select * from buyer";
+	    Connection conn = getConnection();
+	    Statement stat = conn.createStatement();
+	    ResultSet rs = stat.executeQuery(sql);
+	    List<Buyer> asd = new ArrayList<>();
+	    Buyer buyer = null;
+	    while (rs.next()) {
+	      buyer = new Buyer();
+	      buyer.setBuyername(rs.getString(1));
+	      buyer.setBuyerid(rs.getString(2));
+	      buyer.setBuyerpw(rs.getString(3));
+	      buyer.setBuyeraddress(rs.getString(4));
+	      buyer.setBuyerphone(rs.getString(5));
+	      buyer.setBuyersex(rs.getString(6));
+	      asd.add(buyer);
+	    } 
+	    rs.close();
+	    stat.close();
+	    conn.close();
+	    return asd;
+	  }
 }

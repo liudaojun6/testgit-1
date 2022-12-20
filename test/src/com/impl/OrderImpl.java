@@ -39,8 +39,33 @@ public class OrderImpl implements OrderDao {
     ps.close();
     conn.close();
   }
-  
-  public List<Order> selectorder() throws SQLException {
+  public List<Order> selectorderbuyerid(String buyerid) throws SQLException {
+	    Connection conn = getConnection();
+	    String sql = "select * from orderr where buyerid=?";
+	    PreparedStatement ps = conn.prepareStatement(sql);
+	    ps.setString(1,buyerid);
+	    ResultSet rs = ps.executeQuery();
+	    List<Order> asd = new ArrayList<>();
+	    Order order = null;
+	    while (rs.next()) {
+	      order = new Order();
+	      order.setOrderid(rs.getInt(1));
+	      order.setWaresid(rs.getInt(2));
+	      order.setShopid(rs.getInt(3));
+	      order.setBuyerid(rs.getString(4));
+	      order.setWaresnumber(rs.getInt(5));
+	      order.setOrdertime(rs.getString(6));
+	      order.setBuyeraddress(rs.getString(7));
+	      order.setBuyerphone(rs.getString(8));
+	      order.setOrderstate(rs.getString(9));
+	      asd.add(order);
+	    } 
+	    rs.close();
+	    ps.close();
+	    conn.close();
+	    return asd;
+	  }
+  public List<Order> selectorder(int wid) throws SQLException {
     Connection conn = getConnection();
     String sql = "select * from orderr";
     PreparedStatement ps = conn.prepareStatement(sql);

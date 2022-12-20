@@ -14,7 +14,8 @@ Wares w=(Wares)session.getAttribute("ware");
 int id=w.getWaresid();
 %>
     <a class="us_a" href="servlet_yhspxxcus">商城首页</a>
-    <a class="us_a" href="admin_login.jsp">登录</a>
+    <a class="us_a" href="admin_login.jsp">商家页面</a>
+	<a class="us_a" href="cus_record.jsp">个人中心</a>
     <hr />
     <div class="spxq1">
         <div class="spxq1_1">
