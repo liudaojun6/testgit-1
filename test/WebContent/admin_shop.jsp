@@ -141,41 +141,55 @@ function normal(obj){
 <%
 
 	
-	List<Wares> asd= new ArrayList<Wares>();
-	String tt1=request.getParameter("inp");
+List<Wares> asd= new ArrayList<Wares>();
+String tt1=request.getParameter("inp");
+
+
+List<Wares> asdtt= new ArrayList<Wares>();
+asdtt=(List<Wares>)session.getAttribute("yhspxxcus");
+int ddt=0;
+if(tt1==null){
 	
-	
-	List<Wares> asdtt= new ArrayList<Wares>();
-	asdtt=(List<Wares>)session.getAttribute("yhspxx");
-	int ddt=0;
-	if(tt1==null){
-		
-	}
-	else {
-		for(int i=0;i<asdtt.size();i++){
-			Wares qwett=new Wares();
-			qwett=asdtt.get(i);
-			for(int j=0;j<=qwett.getWaresname().length()-tt1.length();j++){
-				
-				if(tt1.equals(qwett.getWaresname().substring(j,j+tt1.length()))){
-					asd.add(qwett);
-					ddt=1;
-					break;
-				}
+}
+else {
+	for(int i=0;i<asdtt.size();i++){
+		Wares qwett=new Wares();
+		qwett=asdtt.get(i);
+		for(int j=0;j<=qwett.getWaresname().length()-tt1.length();j++){
+			
+			if(tt1.equals(qwett.getWaresname().substring(j,j+tt1.length()))&&!qwett.getWaresstate().equals("remove")){
+				asd.add(qwett);
+				ddt=1;
+				break;
 			}
 		}
 	}
-	if(ddt==0&&tt1==null){
-		asd=(List<Wares>)session.getAttribute("yhspxx");
+	
+}
+if(ddt==0&&tt1==null){
+	for(int i=0;i<asdtt.size();i++){
+		Wares qwett=new Wares();
+		qwett=asdtt.get(i);
+		if(!qwett.getWaresstate().equals("remove")){
+			asd.add(qwett);
+		}
 	}
-	if(ddt==0&&tt1!=null){
-		asd=(List<Wares>)session.getAttribute("yhspxx");
-		%>
-			<script type="text/javascript">
-				alert("没有搜索到关键词，请重新搜索！");
-			</script>
-		<%
+	
+}
+if(ddt==0&&tt1!=null){
+	for(int i=0;i<asdtt.size();i++){
+		Wares qwett=new Wares();
+		qwett=asdtt.get(i);
+		if(!qwett.getWaresstate().equals("remove")){
+			asd.add(qwett);
+		}
 	}
+	%>
+		<script type="text/javascript">
+			alert("没有搜索到关键词，请重新搜索！");
+		</script>
+	<%
+}
 	
 	int n=0;
 	%>

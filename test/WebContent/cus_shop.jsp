@@ -131,7 +131,7 @@ function normal(obj){
 			qwett=asdtt.get(i);
 			for(int j=0;j<=qwett.getWaresname().length()-tt1.length();j++){
 				
-				if(tt1.equals(qwett.getWaresname().substring(j,j+tt1.length()))){
+				if(tt1.equals(qwett.getWaresname().substring(j,j+tt1.length()))&&!qwett.getWaresstate().equals("remove")){
 					asd.add(qwett);
 					ddt=1;
 					break;
@@ -141,10 +141,23 @@ function normal(obj){
 		
 	}
 	if(ddt==0&&tt1==null){
-		asd=(List<Wares>)session.getAttribute("yhspxxcus");
+		for(int i=0;i<asdtt.size();i++){
+			Wares qwett=new Wares();
+			qwett=asdtt.get(i);
+			if(!qwett.getWaresstate().equals("remove")){
+				asd.add(qwett);
+			}
+		}
+		
 	}
 	if(ddt==0&&tt1!=null){
-		asd=(List<Wares>)session.getAttribute("yhspxxcus");
+		for(int i=0;i<asdtt.size();i++){
+			Wares qwett=new Wares();
+			qwett=asdtt.get(i);
+			if(!qwett.getWaresstate().equals("remove")){
+				asd.add(qwett);
+			}
+		}
 		%>
 			<script type="text/javascript">
 				alert("没有搜索到关键词，请重新搜索！");
@@ -231,7 +244,7 @@ function normal(obj){
 								qwe=asd.get(op);
 								op++;
 								%>
-								<div class="article-hover" onclick="window.open('servlet_pergood_admin?wid=<%= qwe.getWaresid()%>','_self')">
+								<div class="article-hover" onclick="window.open('servlet_pergood?wid=<%= qwe.getWaresid()%>','_self')">
 									<div class="thumbnail">
 										<img src="upload1/<%= qwe.getWarespicture()%>" alt="">
 									</div>

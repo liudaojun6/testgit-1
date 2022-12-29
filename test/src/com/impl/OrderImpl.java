@@ -69,6 +69,7 @@ public class OrderImpl implements OrderDao {
     Connection conn = getConnection();
     String sql = "select * from orderr";
     PreparedStatement ps = conn.prepareStatement(sql);
+    System.out.print("正在查询数据库");
     ResultSet rs = ps.executeQuery();
     List<Order> asd = new ArrayList<>();
     Order order = null;
