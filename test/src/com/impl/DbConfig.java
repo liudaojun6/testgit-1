@@ -47,7 +47,7 @@ public class DbConfig {
 		conn = DriverManager.getConnection(URL);
 		return conn;
 	}
-	public void create_db(String url){
+	public void create_db(String url){//数据库db文件未找到会重新创建
 		 Connection conn = null;
 		    // 1、加载驱动
 		 try {
@@ -64,12 +64,14 @@ public class DbConfig {
 			String createseller = "CREATE TABLE seller (sellername  TEXT    NOT NULL,sellerid    TEXT    PRIMARY KEY ASC NOT NULL,sellerpw    TEXT    NOT NULL,sellerphone TEXT    NOT NULL,shopid      INTEGER NOT NULL);";
 			String createshop = "CREATE TABLE shop (shopid      INTEGER PRIMARY KEY ASC AUTOINCREMENT NOT NULL,sellerid    TEXT    NOT NULL,shopname    TEXT    NOT NULL,shopcreated TEXT    NOT NULL);";
 			String createwares = "CREATE TABLE wares (waresid      INTEGER PRIMARY KEY ASC AUTOINCREMENT NOT NULL,waresname    TEXT    NOT NULL,waresprice   REAL    NOT NULL,waresnumber  INTEGER NOT NULL,shopid       INTEGER NOT NULL,waresstate   TEXT    NOT NULL,warespicture TEXT,waresclass   TEXT,matketing    TEXT,oldprice     REAL);";
+			String cresteclasses = "CREATE TABLE IF NOT EXISTS classes (mainclass TEXT, otherclass TEXT);";
 			statement.executeUpdate(createbuyer);
 			statement.executeUpdate(createhistoryorder);
 			statement.executeUpdate(createorderr);
 			statement.executeUpdate(createseller);
 			statement.executeUpdate(createshop);
 			statement.executeUpdate(createwares);
+			statement.executeUpdate(cresteclasses);
 			
 			String sql1 = "INSERT INTO seller (sellername,sellerid,sellerpw,sellerphone,shopid) " +
 	                   "VALUES ('zhangsan', '1234', '12345ztc', '13912345678', 1);"; 
@@ -90,6 +92,9 @@ public class DbConfig {
 			String sql15 = "INSERT INTO orderr (orderid, waresid, shopid, buyerid, waresnumber, ordertime, buyeraddress, buyerphone, orderstate) VALUES (9, 3, 1, '黑子', 1, '20-12-2022 22:41:35', '杭州', '13616760368', '未选择');";
 			String sql16 = "INSERT INTO historyorder (historyorderid, waresid, shopid, buyerid, waresnumber, finishtime, buyeraddress, buyerphone, result) VALUES (2, 3, 1, '小明', 1, '20-12-2022 22:44:17', '上海', '13616760368', '交易失败');";
 			String sql17 = "INSERT INTO historyorder (historyorderid, waresid, shopid, buyerid, waresnumber, finishtime, buyeraddress, buyerphone, result) VALUES (3, 4, 1, '小明', 5, '20-12-2022 22:44:21', '浙江省杭州市江干区白杨街道浙江工商大学钱江湾生活区', '19857357369', '交易失败');";
+			String sql18 = "INSERT INTO classes (mainclass, otherclass) VALUES ('中性笔', '晨光;得力;思进;');INSERT INTO classes (mainclass, otherclass) VALUES ('自动铅笔', '晨光;得力;');INSERT INTO classes (mainclass, otherclass) VALUES ('毛笔', '得力;');";
+			String sql19 = "INSERT INTO buyer (buyername,buyerid,buyerpw,buyeraddress,buyerphone,buyersex) " +
+	                   "VALUES ('chen', 'chen', 'a1158189673', '杭州', '18167387037','man');"; 
 			statement.executeUpdate(sql1);
 			statement.executeUpdate(sql2);
 			statement.executeUpdate(sql3);
@@ -107,6 +112,8 @@ public class DbConfig {
 			statement.executeUpdate(sql15);
 			statement.executeUpdate(sql16);
 			statement.executeUpdate(sql17);
+			statement.executeUpdate(sql18);
+			statement.executeUpdate(sql19);
 			statement.close();
 		    conn.close();
 		} catch (SQLException e) {

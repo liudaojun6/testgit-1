@@ -100,9 +100,7 @@ public class Iscontent {
 		  if(wa.getWaresnumber()<=0&&result.equals("发布成功")){
 			  result="商品数量必须是大于0的整数";
 		  }
-		  if(wa.getMatkering().length()>100&&result.equals("发布成功")){
-			  result="商品描述长度不能超过100";
-		  }
+		  
 	  }
 	  return result;
   }
